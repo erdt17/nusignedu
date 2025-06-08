@@ -24,6 +24,7 @@
             --silver: #c0c0c0;
             --bronze: #cd7f32;
             --success: #4caf50;
+            --page-bg: #f0f8ff;
         }
         
         * {
@@ -34,10 +35,11 @@
         
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
+            background-color: var(--page-bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: background-color 0.3s;
         }
         
         .container {
@@ -87,8 +89,9 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
+            padding: 8px 5px;
         }
         
         nav a:hover, nav a.active {
@@ -98,7 +101,7 @@
         nav a.active::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 100%;
             height: 3px;
@@ -182,14 +185,33 @@
             transform: translateY(-2px);
         }
         
+        /* Page Container */
+        .page-container {
+            display: none;
+            min-height: calc(100vh - 200px);
+            padding: 40px 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .page-container.active {
+            display: block;
+        }
+        
         /* Hero Section */
-        .hero {
+        #home-page .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: white;
             padding: 100px 0;
             text-align: center;
             position: relative;
             overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 50px;
         }
         
         .hero::before {
@@ -278,6 +300,8 @@
         .features {
             padding: 80px 0;
             background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
         }
         
         .section-title {
@@ -331,12 +355,7 @@
         }
         
         /* Games Section */
-        .games {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .games-container {
+        #games-page .games-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
@@ -355,6 +374,7 @@
         .game-card:hover {
             transform: translateY(-5px);
             border-color: var(--primary-light);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
         
         .game-badge {
@@ -446,134 +466,15 @@
         
         .btn-game:hover {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            transform: translateY(-2px);
         }
         
-        /* Learning Demo */
-        .demo {
-            padding: 80px 0;
+        /* Quiz Page */
+        #quiz-page {
             background-color: var(--white);
-        }
-        
-        .demo-container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .demo-content {
-            flex: 1;
-        }
-        
-        .demo-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            font-family: 'Nunito', sans-serif;
-            color: var(--primary-dark);
-        }
-        
-        .demo-content p {
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-        }
-        
-        .demo-steps {
-            margin-bottom: 30px;
-        }
-        
-        .step {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .step-number {
-            min-width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-        
-        .demo-visual {
-            flex: 1;
-            background: linear-gradient(45deg, var(--primary), var(--primary-light));
-            border-radius: 20px;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 8rem;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .sign-container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-        
-        .sign-word {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        
-        .sign-animation {
-            font-size: 6rem;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        
-        .sign-controls {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-        
-        .sign-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .sign-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-        }
-        
-        /* Quiz Section */
-        .quiz {
-            padding: 80px 0;
-            background-color: var(--light);
-        }
-        
-        .quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--white);
             border-radius: 20px;
             box-shadow: var(--shadow);
-            overflow: hidden;
+            padding: 40px;
         }
         
         .quiz-header {
@@ -581,6 +482,8 @@
             color: white;
             padding: 20px;
             text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin: -40px -40px 30px -40px;
         }
         
         .quiz-progress {
@@ -596,10 +499,11 @@
             background-color: white;
             width: 30%;
             border-radius: 4px;
+            transition: width 0.5s ease;
         }
         
         .quiz-content {
-            padding: 30px;
+            padding: 20px;
         }
         
         .quiz-question {
@@ -607,6 +511,21 @@
             margin-bottom: 30px;
             text-align: center;
             font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .quiz-image {
+            max-width: 300px;
+            margin: 0 auto 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            background: var(--light);
+            font-size: 5rem;
         }
         
         .quiz-options {
@@ -616,7 +535,7 @@
             margin-bottom: 30px;
         }
         
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .quiz-options {
                 grid-template-columns: 1fr;
             }
@@ -664,6 +583,7 @@
             justify-content: center;
             font-size: 1.5rem;
             flex-shrink: 0;
+            font-weight: bold;
         }
         
         .quiz-option.selected .option-icon {
@@ -711,11 +631,64 @@
             margin-bottom: 30px;
         }
         
+        /* Community Page */
+        #community-page {
+            background-color: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+        }
+        
+        .community-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .community-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .community-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .community-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+        
         /* Footer */
         footer {
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: white;
             padding: 60px 0 20px;
+            margin-top: 80px;
         }
         
         .footer-container {
@@ -793,29 +766,22 @@
         
         /* Responsive */
         @media (max-width: 992px) {
-            .demo-container {
+            .header-container {
                 flex-direction: column;
+                gap: 20px;
             }
             
-            .demo-visual {
-                width: 100%;
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .xp-bar {
+                width: 120px;
             }
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            
-            nav ul {
-                order: 3;
-                width: 100%;
-                justify-content: center;
-                margin-top: 15px;
-                gap: 15px;
-            }
-            
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -832,10 +798,6 @@
             .stat-item .number {
                 font-size: 2rem;
             }
-            
-            .xp-bar {
-                width: 100px;
-            }
         }
         
         @media (max-width: 480px) {
@@ -843,7 +805,11 @@
                 font-size: 2rem;
             }
             
-            .features-grid, .games-container {
+            .features-grid, .games-container, .community-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quiz-options {
                 grid-template-columns: 1fr;
             }
         }
@@ -853,17 +819,16 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <a href="#" class="logo">
+            <a href="#" class="logo" id="home-link">
                 <i class="fas fa-hands"></i>
                 <span>NusaSign</span>
             </a>
             <nav>
                 <ul>
-                    <li><a href="#" class="active">Beranda</a></li>
-                    <li><a href="#games">Games</a></li>
-                    <li><a href="#demo">Praktik</a></li>
-                    <li><a href="#quiz">Quiz</a></li>
-                    <li><a href="#">Tentang</a></li>
+                    <li><a href="#" id="home-nav" class="active">Beranda</a></li>
+                    <li><a href="#" id="games-nav">Games</a></li>
+                    <li><a href="#" id="community-nav">Komunitas</a></li>
+                    <li><a href="#" id="about-nav">Tentang</a></li>
                 </ul>
             </nav>
             <div class="user-actions">
@@ -880,64 +845,69 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-content">
-            <h1>Belajar Bahasa Isyarat Indonesia dengan Cara Menyenangkan</h1>
-            <p>Platform edukasi interaktif untuk mempelajari bahasa isyarat Indonesia dan daerah melalui games dan quiz menarik.</p>
-            <button class="btn btn-hero"><i class="fas fa-play"></i> Mulai Belajar Gratis</button>
-            
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="number">15.200+</div>
-                    <div class="label">Pengguna Terdaftar</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">420+</div>
-                    <div class="label">Kata & Frasa</div>
-                </div>
-                <div class="stat-item">
-                    <div class="number">97%</div>
-                    <div class="label">Kepuasan Pengguna</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features">
+    <!-- Home Page -->
+    <div id="home-page" class="page-container active">
         <div class="container">
-            <h2 class="section-title">Mengapa Belajar di <span>NusaSign</span>?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-gamepad"></i>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Belajar Bahasa Isyarat Indonesia dengan Cara Menyenangkan</h1>
+                    <p>Platform edukasi interaktif untuk mempelajari bahasa isyarat Indonesia dan daerah melalui games dan quiz menarik.</p>
+                    <button class="btn btn-hero" id="start-learning"><i class="fas fa-play"></i> Mulai Belajar Gratis</button>
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="number">15.200+</div>
+                            <div class="label">Pengguna Terdaftar</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">420+</div>
+                            <div class="label">Kata & Frasa</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="number">97%</div>
+                            <div class="label">Kepuasan Pengguna</div>
+                        </div>
                     </div>
-                    <h3>Belajar Sambil Bermain</h3>
-                    <p>Metode pembelajaran melalui games yang menyenangkan dan tidak membosankan.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-map-marked-alt"></i>
-                    </div>
-                    <h3>Bahasa Daerah</h3>
-                    <p>Pelajari bahasa isyarat khas dari berbagai daerah di Indonesia.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-hands"></i>
-                    </div>
-                    <h3>Praktik Langsung</h3>
-                    <p>Teknologi deteksi gerakan untuk memeriksa isyarat yang Anda buat.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games">
+            <!-- Features Section -->
+            <section class="features">
+                <h2 class="section-title">Mengapa Belajar di <span>NusaSign</span>?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Belajar Sambil Bermain</h3>
+                        <p>Metode pembelajaran melalui games yang menyenangkan dan tidak membosankan.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Bahasa Daerah</h3>
+                        <p>Pelajari bahasa isyarat khas dari berbagai daerah di Indonesia.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                        <h3>Praktik Langsung</h3>
+                        <p>Teknologi deteksi gerakan untuk memeriksa isyarat yang Anda buat.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Games Page -->
+    <div id="games-page" class="page-container">
         <div class="container">
             <h2 class="section-title">Games <span>Edukatif</span></h2>
+            <p class="text-center" style="margin-bottom: 40px;">Pilih game untuk mulai belajar bahasa isyarat dengan cara menyenangkan</p>
+            
             <div class="games-container">
                 <div class="game-card">
                     <div class="game-badge">Populer</div>
@@ -952,11 +922,12 @@
                             <span><i class="fas fa-medal"></i> XP: 150</span>
                             <span><i class="fas fa-trophy"></i> Level: 3/5</span>
                         </div>
-                        <a href="#" class="btn-game">Main Sekarang</a>
+                        <button class="btn-game start-quiz" data-quiz="alfabet">Main Sekarang</button>
                     </div>
                 </div>
                 
                 <div class="game-card">
+                    <div class="game-badge">Baru</div>
                     <div class="game-img">
                         <i class="fas fa-hands-helping"></i>
                     </div>
@@ -968,7 +939,7 @@
                             <span><i class="fas fa-medal"></i> XP: 250</span>
                             <span><i class="fas fa-trophy"></i> Level: 1/5</span>
                         </div>
-                        <a href="#" class="btn-game">Main Sekarang</a>
+                        <button class="btn-game start-quiz" data-quiz="salam">Main Sekarang</button>
                     </div>
                 </div>
                 
@@ -984,122 +955,173 @@
                             <span><i class="fas fa-medal"></i> XP: 350</span>
                             <span><i class="fas fa-trophy"></i> Level: 0/5</span>
                         </div>
-                        <a href="#" class="btn-game">Main Sekarang</a>
+                        <button class="btn-game start-quiz" data-quiz="makanan">Main Sekarang</button>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="game-content">
+                        <span class="game-level intermediate">Menengah</span>
+                        <h3>Game Keluarga & Hubungan</h3>
+                        <p>Pelajari isyarat untuk berbagai hubungan keluarga dalam BISINDO.</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-medal"></i> XP: 200</span>
+                            <span><i class="fas fa-trophy"></i> Level: 2/5</span>
+                        </div>
+                        <button class="btn-game start-quiz" data-quiz="keluarga">Main Sekarang</button>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-img">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="game-content">
+                        <span class="game-level beginner">Pemula</span>
+                        <h3>Game Belanja Sehari-hari</h3>
+                        <p>Kosakata penting untuk aktivitas belanja dan transaksi.</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-medal"></i> XP: 180</span>
+                            <span><i class="fas fa-trophy"></i> Level: 4/5</span>
+                        </div>
+                        <button class="btn-game start-quiz" data-quiz="belanja">Main Sekarang</button>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-badge">Favorit</div>
+                    <div class="game-img">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="game-content">
+                        <span class="game-level advanced">Lanjutan</span>
+                        <h3>Game Ekspresi Emosi</h3>
+                        <p>Pelajari isyarat untuk berbagai ekspresi emosi dan perasaan.</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-medal"></i> XP: 300</span>
+                            <span><i class="fas fa-trophy"></i> Level: 2/5</span>
+                        </div>
+                        <button class="btn-game start-quiz" data-quiz="emosi">Main Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Learning Demo -->
-    <section id="demo" class="demo">
+    <!-- Quiz Page -->
+    <div id="quiz-page" class="page-container">
         <div class="container">
-            <div class="demo-container">
-                <div class="demo-content">
-                    <h2>Coba Praktikkan Sekarang!</h2>
-                    <p>Pelajari isyarat untuk kata-kata dasar dengan demo interaktif kami:</p>
-                    
-                    <div class="demo-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Perhatikan gerakan tangan</h4>
-                                <p>Perhatikan dengan seksama gerakan tangan pada animasi di samping</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Praktikkan gerakan</h4>
-                                <p>Coba tirukan gerakan yang Anda lihat dengan tangan Anda</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Ulangi beberapa kali</h4>
-                                <p>Ulangi gerakan sampai Anda merasa nyaman dan hafal</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="btn btn-signup"><i class="fas fa-random"></i> Kata Lainnya</button>
-                </div>
-                <div class="demo-visual">
-                    <div class="sign-container">
-                        <div class="sign-word">TERIMA KASIH (BISINDO)</div>
-                        <div class="sign-animation">👏</div>
-                        <div class="sign-controls">
-                            <button class="sign-btn"><i class="fas fa-step-backward"></i></button>
-                            <button class="sign-btn"><i class="fas fa-play"></i></button>
-                            <button class="sign-btn"><i class="fas fa-step-forward"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Quiz content will be loaded dynamically -->
         </div>
-    </section>
+    </div>
 
-    <!-- Quiz Section -->
-    <section id="quiz" class="quiz">
+    <!-- Community Page -->
+    <div id="community-page" class="page-container">
         <div class="container">
-            <h2 class="section-title">Quiz <span>BISINDO</span></h2>
+            <div class="community-header">
+                <h2 class="section-title">Komunitas <span>NusaSign</span></h2>
+                <p>Bergabunglah dengan komunitas pembelajar bahasa isyarat terbesar di Indonesia</p>
+            </div>
             
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h3>Game Alfabet BISINDO</h3>
-                    <p>Level 2: Huruf Vokal</p>
-                    <div class="quiz-progress">
-                        <div class="quiz-progress-fill"></div>
+            <div class="community-grid">
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-comments"></i>
                     </div>
-                    <div>Pertanyaan 3 dari 10</div>
+                    <h3>Forum Diskusi</h3>
+                    <p>Berdiskusi, bertanya, dan berbagi pengalaman dengan anggota komunitas lainnya.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Lihat Forum</button>
                 </div>
                 
-                <div class="quiz-content">
-                    <div class="quiz-question">
-                        Apa isyarat yang benar untuk huruf "E" dalam BISINDO?
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-calendar-alt"></i>
                     </div>
-                    
-                    <div class="quiz-options">
-                        <div class="quiz-option">
-                            <div class="option-icon">A</div>
-                            <div class="option-text">Telapak tangan menghadap ke depan, jari telunjuk dan tengah diangkat</div>
-                        </div>
-                        
-                        <div class="quiz-option selected">
-                            <div class="option-icon">B</div>
-                            <div class="option-text">Telapak tangan menghadap ke depan, keempat jari dirapatkan dan ditekuk</div>
-                        </div>
-                        
-                        <div class="quiz-option">
-                            <div class="option-icon">C</div>
-                            <div class="option-text">Telapak tangan menghadap ke samping, jari telunjuk dan jari tengah membentuk V</div>
-                        </div>
-                        
-                        <div class="quiz-option">
-                            <div class="option-icon">D</div>
-                            <div class="option-text">Telapak tangan menghadap ke diri sendiri, jari kelingking diangkat</div>
-                        </div>
-                    </div>
-                    
-                    <div class="quiz-actions">
-                        <button class="btn btn-login"><i class="fas fa-arrow-left"></i> Sebelumnya</button>
-                        <button class="btn btn-signup">Selanjutnya <i class="fas fa-arrow-right"></i></button>
-                    </div>
+                    <h3>Event & Workshop</h3>
+                    <p>Ikuti workshop online dan offline untuk meningkatkan kemampuan bahasa isyarat Anda.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Lihat Jadwal</button>
                 </div>
                 
-                <div class="quiz-result">
-                    <div class="quiz-result-icon">
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <h3>Study Group</h3>
+                    <p>Temukan kelompok belajar sesuai level dan lokasi Anda untuk belajar bersama.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Cari Grup</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">
                         <i class="fas fa-trophy"></i>
                     </div>
-                    <h3 class="quiz-result-title">Selamat! Quiz Selesai</h3>
-                    <div class="quiz-result-score">85%</div>
-                    <p>Anda menjawab 8 dari 10 pertanyaan dengan benar</p>
-                    <button class="btn btn-signup"><i class="fas fa-redo"></i> Coba Lagi</button>
+                    <h3>Kompetisi</h3>
+                    <p>Ikuti kompetisi bahasa isyarat bulanan dan menangkan hadiah menarik.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Ikuti Kompetisi</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Komunitas</h3>
+                    <p>Koleksi video pembelajaran yang dibuat oleh anggota komunitas.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Tonton Video</button>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Relawan</h3>
+                    <p>Jadi bagian dari tim relawan untuk membantu menyebarkan bahasa isyarat.</p>
+                    <button class="btn btn-signup" style="margin-top: 20px;">Daftar Relawan</button>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page-container">
+        <div class="container">
+            <div class="features">
+                <h2 class="section-title">Tentang <span>NusaSign</span></h2>
+                
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                        NusaSign adalah platform edukasi bahasa isyarat Indonesia yang didedikasikan untuk membuat pembelajaran menjadi menyenangkan dan mudah diakses oleh semua orang. Kami menggabungkan pendekatan gamifikasi dengan konten edukasi berkualitas tinggi untuk menciptakan pengalaman belajar yang efektif.
+                    </p>
+                    
+                    <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin: 50px 0;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;">2019</div>
+                            <div>Tahun Didirikan</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;">50.000+</div>
+                            <div>Pengguna Aktif</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 3rem; color: var(--primary); margin-bottom: 10px;">15</div>
+                            <div>Bahasa Daerah</div>
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin: 40px 0 20px; color: var(--primary-dark);">Tim Kami</h3>
+                    <p>
+                        Tim NusaSign terdiri dari ahli bahasa isyarat, pengembang pendidikan, dan desainer yang berdedikasi untuk menciptakan solusi pembelajaran inovatif. Kami juga bekerja sama dengan komunitas Tuli di seluruh Indonesia untuk memastikan akurasi dan relevansi materi pembelajaran.
+                    </p>
+                    
+                    <button class="btn btn-signup" style="margin-top: 40px;">
+                        <i class="fas fa-envelope"></i> Hubungi Kami
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -1122,7 +1144,7 @@
                 <div class="footer-col">
                     <h3>Perusahaan</h3>
                     <ul>
-                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#" class="footer-link" data-page="about">Tentang Kami</a></li>
                         <li><a href="#">Tim</a></li>
                         <li><a href="#">Karir</a></li>
                         <li><a href="#">Mitra</a></li>
@@ -1132,8 +1154,8 @@
                 <div class="footer-col">
                     <h3>Sumber Belajar</h3>
                     <ul>
-                        <li><a href="#">Games</a></li>
-                        <li><a href="#">Quiz</a></li>
+                        <li><a href="#" class="footer-link" data-page="games">Games</a></li>
+                        <li><a href="#" class="footer-link" data-page="community">Komunitas</a></li>
                         <li><a href="#">Kamus</a></li>
                         <li><a href="#">Blog</a></li>
                     </ul>
@@ -1158,155 +1180,472 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Animasi tombol
-            const buttons = document.querySelectorAll('.btn');
-            buttons.forEach(button => {
-                button.addEventListener('mouseover', function() {
-                    this.style.transform = 'translateY(-2px)';
+            // Page navigation system
+            const pages = {
+                home: document.getElementById('home-page'),
+                games: document.getElementById('games-page'),
+                community: document.getElementById('community-page'),
+                about: document.getElementById('about-page'),
+                quiz: document.getElementById('quiz-page')
+            };
+            
+            const navLinks = {
+                home: document.getElementById('home-nav'),
+                games: document.getElementById('games-nav'),
+                community: document.getElementById('community-nav'),
+                about: document.getElementById('about-nav')
+            };
+            
+            const homeLink = document.getElementById('home-link');
+            
+            // Hide all pages and show the active one
+            function showPage(pageId) {
+                // Hide all pages
+                Object.values(pages).forEach(page => {
+                    page.classList.remove('active');
                 });
                 
-                button.addEventListener('mouseout', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // Animasi kartu fitur
-            const featureCards = document.querySelectorAll('.feature-card');
-            featureCards.forEach(card => {
-                card.addEventListener('mouseover', function() {
-                    this.style.transform = 'translateY(-10px)';
-                    this.style.borderColor = 'var(--primary)';
+                // Remove active class from all nav links
+                Object.values(navLinks).forEach(link => {
+                    link.classList.remove('active');
                 });
                 
-                card.addEventListener('mouseout', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.borderColor = 'transparent';
-                });
-            });
-            
-            // Navigasi aktif
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Scroll ke section yang dituju
-                    const targetId = this.getAttribute('href');
-                    if(targetId !== '#') {
-                        document.querySelector(targetId).scrollIntoView({ 
-                            behavior: 'smooth' 
-                        });
-                    }
-                });
-            });
-            
-            // Demo button action
-            const demoBtn = document.querySelector('.btn-signup');
-            const signAnimation = document.querySelector('.sign-animation');
-            const signWord = document.querySelector('.sign-word');
-            
-            const signs = [
-                { word: "TERIMA KASIH (BISINDO)", emoji: "👏" },
-                { word: "HALO (BISINDO)", emoji: "👋" },
-                { word: "SELAMAT PAGI (Jawa)", emoji: "🌞" },
-                { word: "TERIMA KASIH (Bali)", emoji: "🙏" },
-                { word: "SELAMAT TINGGAL (Sunda)", emoji: "👋" },
-                { word: "SILAKAN (Minang)", emoji: "🤲" },
-                { word: "MAAF (BISINDO)", emoji: "😔" },
-                { word: "SAMA-SAMA (BISINDO)", emoji: "🙏" }
-            ];
-            
-            let currentSign = 0;
-            
-            function changeSign() {
-                currentSign = (currentSign + 1) % signs.length;
-                signWord.textContent = signs[currentSign].word;
-                signAnimation.textContent = signs[currentSign].emoji;
+                // Show the selected page
+                pages[pageId].classList.add('active');
+                
+                // Add active class to the corresponding nav link
+                if (navLinks[pageId]) {
+                    navLinks[pageId].classList.add('active');
+                }
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
             }
             
-            demoBtn.addEventListener('click', function() {
-                changeSign();
+            // Navigation event listeners
+            navLinks.home.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('home');
             });
             
-            // Sign controls
-            const signControls = document.querySelectorAll('.sign-btn');
-            
-            signControls[0].addEventListener('click', function() {
-                currentSign = (currentSign - 1 + signs.length) % signs.length;
-                signWord.textContent = signs[currentSign].word;
-                signAnimation.textContent = signs[currentSign].emoji;
+            navLinks.games.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('games');
             });
             
-            signControls[1].addEventListener('click', function() {
-                signAnimation.style.animation = 'none';
-                setTimeout(() => {
-                    signAnimation.style.animation = 'pulse 2s infinite';
-                }, 10);
+            navLinks.community.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('community');
             });
             
-            signControls[2].addEventListener('click', function() {
-                changeSign();
+            navLinks.about.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('about');
             });
             
-            // Quiz interaction
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            const nextBtn = document.querySelector('.quiz-actions .btn-signup');
-            const quizResult = document.querySelector('.quiz-result');
-            const quizContent = document.querySelector('.quiz-content');
-            
-            quizOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    // Remove selected class from all options
-                    quizOptions.forEach(opt => opt.classList.remove('selected'));
-                    
-                    // Add selected class to clicked option
-                    this.classList.add('selected');
-                    
-                    // Enable next button
-                    nextBtn.disabled = false;
-                });
+            homeLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showPage('home');
             });
             
-            nextBtn.addEventListener('click', function() {
-                const selectedOption = document.querySelector('.quiz-option.selected');
-                
-                if(selectedOption) {
-                    // Show result in quiz mode
-                    if(Math.random() > 0.3) {
-                        selectedOption.classList.add('correct');
-                    } else {
-                        selectedOption.classList.add('incorrect');
-                    }
-                    
-                    // After a delay, show the quiz result
-                    setTimeout(() => {
-                        quizContent.style.display = 'none';
-                        quizResult.style.display = 'block';
-                    }, 2000);
-                }
-            });
-            
-            // Game buttons
-            const gameBtns = document.querySelectorAll('.btn-game');
-            
-            gameBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
+            // Footer links
+            document.querySelectorAll('.footer-link').forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    document.querySelector('#quiz').scrollIntoView({ 
-                        behavior: 'smooth' 
-                    });
+                    const page = link.getAttribute('data-page');
+                    showPage(page);
                 });
             });
             
             // Start learning button
-            const startBtn = document.querySelector('.btn-hero');
-            startBtn.addEventListener('click', function() {
-                document.querySelector('#games').scrollIntoView({ 
-                    behavior: 'smooth' 
+            document.getElementById('start-learning').addEventListener('click', () => {
+                showPage('games');
+            });
+            
+            // Quiz data - Extensive quiz questions
+            const quizzes = {
+                alfabet: {
+                    title: "Game Alfabet BISINDO",
+                    level: "Level 2: Huruf Vokal",
+                    questions: [
+                        {
+                            question: "Apa isyarat yang benar untuk huruf 'A' dalam BISINDO?",
+                            options: [
+                                "Telapak tangan menghadap ke depan dengan jari-jari rapat dan lurus",
+                                "Telapak tangan menghadap ke depan dengan jempol terangkat",
+                                "Telapak tangan menghadap ke samping dengan jari telunjuk terangkat",
+                                "Telapak tangan menghadap ke diri sendiri dengan semua jari menekuk"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            question: "Bagaimana isyarat untuk huruf 'E'?",
+                            options: [
+                                "Telapak tangan menghadap ke depan dengan jari telunjuk dan tengah diangkat",
+                                "Telapak tangan menghadap ke depan dengan keempat jari dirapatkan dan ditekuk",
+                                "Telapak tangan menghadap ke samping dengan jari telunjuk dan jari tengah membentuk V",
+                                "Telapak tangan menghadap ke diri sendiri dengan jari kelingking diangkat"
+                            ],
+                            answer: 1
+                        },
+                        {
+                            question: "Isyarat untuk huruf 'I' adalah:",
+                            options: [
+                                "Jari kelingking diangkat, telapak tangan menghadap ke depan",
+                                "Jari telunjuk diangkat, telapak tangan menghadap ke samping",
+                                "Jari tengah diangkat, telapak tangan menghadap ke depan",
+                                "Jari manis dan kelingking diangkat, telapak tangan menghadap ke depan"
+                            ],
+                            answer: 2
+                        },
+                        {
+                            question: "Bagaimana isyarat untuk huruf 'O'?",
+                            options: [
+                                "Semua jari menekuk membentuk lingkaran",
+                                "Jari telunjuk dan ibu jari membentuk lingkaran",
+                                "Telapak tangan menggenggam dengan ibu jari di atas jari lainnya",
+                                "Telapak tangan terbuka dengan jari-jari sedikit menekuk"
+                            ],
+                            answer: 1
+                        },
+                        {
+                            question: "Isyarat untuk huruf 'U' adalah:",
+                            options: [
+                                "Jari telunjuk dan jari tengah diangkat membentuk V terbalik",
+                                "Jari kelingking diangkat dengan telapak tangan menghadap ke samping",
+                                "Jari telunjuk diangkat dengan telapak tangan menghadap ke atas",
+                                "Semua jari diangkat kecuali jempol yang ditekuk"
+                            ],
+                            answer: 0
+                        }
+                    ]
+                },
+                salam: {
+                    title: "Game Salam Daerah",
+                    level: "Level 1: Salam Dasar",
+                    questions: [
+                        {
+                            question: "Bagaimana isyarat 'Selamat Pagi' dalam BISINDO?",
+                            options: [
+                                "Tangan kanan terbuka menyentuh dahi lalu turun ke depan",
+                                "Kedua tangan menyilang di dada lalu membuka ke samping",
+                                "Tangan kanan mengepal lalu membuka dengan jari terbuka",
+                                "Tangan kiri menepuk dada lalu tangan kanan mengangguk"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            question: "Isyarat untuk 'Terima Kasih' di Jawa adalah:",
+                            options: [
+                                "Kedua tangan menyatu di depan dada dengan kepala menunduk",
+                                "Tangan kanan menyentuh dahi lalu turun ke dagu",
+                                "Tangan kiri di dada, tangan kanan menggerakkan jari",
+                                "Kedua tangan terbuka lalu menyilang di depan dada"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            question: "Bagaimana isyarat 'Sampai Jumpa' di Bali?",
+                            options: [
+                                "Tangan kanan melambai dengan telapak menghadap ke luar",
+                                "Kedua tangan menyatu di depan dada lalu membuka ke samping",
+                                "Tangan kanan mengepal lalu jari telunjuk mengacung",
+                                "Kedua tangan terbuka lalu menyilang di depan dada"
+                            ],
+                            answer: 1
+                        },
+                        {
+                            question: "Isyarat 'Apa Kabar?' dalam BISINDO adalah:",
+                            options: [
+                                "Tangan kanan terbuka bergerak dari kiri ke kanan di depan dada",
+                                "Kedua jari telunjuk menyentuh dada lalu bergerak ke depan",
+                                "Tangan kanan mengepal dengan jempol mengacung bergerak naik turun",
+                                "Jari telunjuk menyentuh pipi lalu bergerak membentuk lingkaran"
+                            ],
+                            answer: 2
+                        },
+                        {
+                            question: "Bagaimana isyarat 'Selamat Tinggal' di Sunda?",
+                            options: [
+                                "Tangan kanan terbuka melambai dengan gerakan ke bawah",
+                                "Kedua tangan menyatu di dada lalu membuka ke samping",
+                                "Tangan kiri di dada, tangan kanan mengangguk ke bawah",
+                                "Tangan kanan membentuk kepalan lalu membuka dengan jari terentang"
+                            ],
+                            answer: 0
+                        }
+                    ]
+                },
+                makanan: {
+                    title: "Game Makanan Tradisional",
+                    level: "Level 3: Makanan Pokok",
+                    questions: [
+                        {
+                            question: "Bagaimana isyarat untuk 'Nasi' dalam BISINDO?",
+                            options: [
+                                "Tangan membentuk mangkuk lalu gerakan menyendok ke mulut",
+                                "Kedua tangan membentuk lingkaran lalu memutar",
+                                "Tangan kanan menepuk perut lalu gerakan mengunyah",
+                                "Jari telunjuk dan jari tengah meniru gerakan memegang sumpit"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            question: "Isyarat untuk 'Rendang' dari Padang adalah:",
+                            options: [
+                                "Tangan meniru gerakan memotong lalu mengaduk",
+                                "Kedua tangan membentuk segitiga di depan mulut",
+                                "Tangan kanan mengepal dengan gerakan memutar di depan dada",
+                                "Tangan kiri terbuka, tangan kanan meniru gerakan menyiram"
+                            ],
+                            answer: 2
+                        },
+                        {
+                            question: "Bagaimana isyarat 'Sate'?",
+                            options: [
+                                "Jari telunjuk menunjuk lalu gerakan menusuk ke depan",
+                                "Tangan meniru gerakan memegang tusuk sate lalu memutar",
+                                "Kedua tangan meniru gerakan menusuk dan memutar",
+                                "Tangan kanan mengepal dengan jari kelingking mengacung"
+                            ],
+                            answer: 1
+                        },
+                        {
+                            question: "Isyarat untuk 'Gudeg' dari Yogyakarta adalah:",
+                            options: [
+                                "Tangan meniru gerakan mengupas lalu memotong",
+                                "Kedua tangan membentuk lingkaran lalu gerakan mengaduk",
+                                "Tangan kanan terbuka bergerak melingkar di atas tangan kiri",
+                                "Tangan kiri mengepal, tangan kanan meniru gerakan menyendok"
+                            ],
+                            answer: 2
+                        },
+                        {
+                            question: "Bagaimana isyarat 'Pempek' dari Palembang?",
+                            options: [
+                                "Tangan meniru gerakan menggulung lalu menggoreng",
+                                "Kedua jari telunjuk menyilang lalu bergerak memutar",
+                                "Tangan kanan mengepal dengan gerakan mencelup",
+                                "Tangan kiri terbuka, tangan kanan meniru gerakan memotong"
+                            ],
+                            answer: 0
+                        }
+                    ]
+                },
+                // Additional quizzes
+                keluarga: {
+                    title: "Game Keluarga & Hubungan",
+                    level: "Level 2: Hubungan Dasar",
+                    questions: [
+                        {
+                            question: "Bagaimana isyarat untuk 'Ibu' dalam BISINDO?",
+                            options: [
+                                "Tangan terbuka menyentuh pipi lalu turun ke dagu",
+                                "Jari telunjuk menyentuh dagu lalu bergerak ke depan",
+                                "Tangan membentuk hati di depan dada",
+                                "Jari telunjuk dan jari tengah menyentuh bibir lalu bergerak ke depan"
+                            ],
+                            answer: 0
+                        },
+                        {
+                            question: "Isyarat untuk 'Kakak Laki-laki' adalah:",
+                            options: [
+                                "Tangan menepuk bahu lalu jari telunjuk mengacung",
+                                "Tangan kanan mengepal dengan jempol mengacung ke atas",
+                                "Jari telunjuk menyentuh pelipis lalu bergerak ke depan",
+                                "Kedua tangan menyilang di dada lalu membuka"
+                            ],
+                            answer: 1
+                        }
+                    ]
+                },
+                belanja: {
+                    title: "Game Belanja Sehari-hari",
+                    level: "Level 1: Transaksi Dasar",
+                    questions: [
+                        {
+                            question: "Bagaimana isyarat untuk 'Berapa Harga?'",
+                            options: [
+                                "Tangan membentuk uang lalu gerakan bertanya",
+                                "Jari telunjuk dan jari tengah menggosok-gosok",
+                                "Kedua tangan membentuk lingkaran lalu memisah",
+                                "Tangan kanan terbuka bergerak naik turun"
+                            ],
+                            answer: 0
+                        }
+                    ]
+                },
+                emosi: {
+                    title: "Game Ekspresi Emosi",
+                    level: "Level 3: Perasaan Kompleks",
+                    questions: [
+                        {
+                            question: "Bagaimana isyarat untuk 'Bahagia'?",
+                            options: [
+                                "Kedua tangan terbuka bergerak melingkar di depan dada",
+                                "Jari-jari menyentuh pipi lalu bergerak membentuk senyuman",
+                                "Tangan mengepal lalu terbuka dengan jari terentang",
+                                "Kedua tangan menyilang di dada lalu membuka lebar"
+                            ],
+                            answer: 1
+                        }
+                    ]
+                }
+            };
+            
+            // Current quiz state
+            let currentQuiz = null;
+            let currentQuestion = 0;
+            let score = 0;
+            
+            // Start quiz function
+            function startQuiz(quizId) {
+                currentQuiz = quizzes[quizId];
+                currentQuestion = 0;
+                score = 0;
+                showPage('quiz');
+                renderQuiz();
+            }
+            
+            // Render quiz function
+            function renderQuiz() {
+                const quizContainer = document.querySelector('#quiz-page .container');
+                const question = currentQuiz.questions[currentQuestion];
+                const progress = ((currentQuestion) / currentQuiz.questions.length) * 100;
+                
+                quizContainer.innerHTML = `
+                    <div id="quiz-content">
+                        <div class="quiz-header">
+                            <h3>${currentQuiz.title}</h3>
+                            <p>${currentQuiz.level}</p>
+                            <div class="quiz-progress">
+                                <div class="quiz-progress-fill" style="width: ${progress}%"></div>
+                            </div>
+                            <div>Pertanyaan ${currentQuestion + 1} dari ${currentQuiz.questions.length}</div>
+                        </div>
+                        
+                        <div class="quiz-content">
+                            <div class="quiz-question">${question.question}</div>
+                            
+                            <div class="quiz-options">
+                                ${question.options.map((option, index) => `
+                                    <div class="quiz-option" data-index="${index}">
+                                        <div class="option-icon">${String.fromCharCode(65 + index)}</div>
+                                        <div class="option-text">${option}</div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            
+                            <div class="quiz-actions">
+                                <button class="btn btn-login" id="prev-btn" ${currentQuestion === 0 ? 'disabled' : ''}>
+                                    <i class="fas fa-arrow-left"></i> Sebelumnya
+                                </button>
+                                <button class="btn btn-signup" id="next-btn" disabled>
+                                    Selanjutnya <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="quiz-result">
+                            <div class="quiz-result-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <h3 class="quiz-result-title">Selamat! Quiz Selesai</h3>
+                            <div class="quiz-result-score">${Math.round((score / currentQuiz.questions.length) * 100)}%</div>
+                            <p>Anda menjawab ${score} dari ${currentQuiz.questions.length} pertanyaan dengan benar</p>
+                            <button class="btn btn-signup" id="restart-btn">
+                                <i class="fas fa-redo"></i> Main Lagi
+                            </button>
+                            <button class="btn btn-login" id="back-to-games" style="margin-top: 15px;">
+                                <i class="fas fa-gamepad"></i> Kembali ke Games
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Add event listeners
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.addEventListener('click', selectOption);
+                });
+                
+                document.getElementById('prev-btn').addEventListener('click', goToPrevQuestion);
+                document.getElementById('next-btn').addEventListener('click', goToNextQuestion);
+            }
+            
+            // Select option function
+            function selectOption(e) {
+                const selectedOption = e.currentTarget;
+                const selectedIndex = parseInt(selectedOption.getAttribute('data-index'));
+                const correctIndex = currentQuiz.questions[currentQuestion].answer;
+                
+                // Remove any existing selections
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.classList.remove('selected', 'correct', 'incorrect');
+                });
+                
+                // Mark selected option
+                selectedOption.classList.add('selected');
+                
+                // Enable next button
+                document.getElementById('next-btn').disabled = false;
+                
+                // Check answer after a delay
+                setTimeout(() => {
+                    if (selectedIndex === correctIndex) {
+                        selectedOption.classList.add('correct');
+                        score++;
+                    } else {
+                        selectedOption.classList.add('incorrect');
+                        // Highlight correct answer
+                        document.querySelector(`.quiz-option[data-index="${correctIndex}"]`).classList.add('correct');
+                    }
+                }, 500);
+            }
+            
+            // Go to next question
+            function goToNextQuestion() {
+                currentQuestion++;
+                
+                if (currentQuestion < currentQuiz.questions.length) {
+                    renderQuiz();
+                } else {
+                    // Show results
+                    document.querySelector('.quiz-content').style.display = 'none';
+                    document.querySelector('.quiz-result').style.display = 'block';
+                    document.querySelector('.quiz-header p:nth-child(2)').textContent = "Quiz Selesai";
+                    
+                    // Update progress bar to 100%
+                    document.querySelector('.quiz-progress-fill').style.width = '100%';
+                    
+                    // Add event listeners to result buttons
+                    document.getElementById('restart-btn').addEventListener('click', () => {
+                        startQuiz(Object.keys(quizzes).find(key => quizzes[key] === currentQuiz));
+                    });
+                    
+                    document.getElementById('back-to-games').addEventListener('click', () => {
+                        showPage('games');
+                    });
+                }
+            }
+            
+            // Go to previous question
+            function goToPrevQuestion() {
+                if (currentQuestion > 0) {
+                    currentQuestion--;
+                    renderQuiz();
+                }
+            }
+            
+            // Start quiz when game button is clicked
+            document.querySelectorAll('.start-quiz').forEach(button => {
+                button.addEventListener('click', function() {
+                    const quizId = this.getAttribute('data-quiz');
+                    startQuiz(quizId);
                 });
             });
+            
+            // Initialize the page
+            showPage('home');
         });
     </script>
 </body>
