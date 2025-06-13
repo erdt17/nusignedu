@@ -1146,6 +1146,7 @@
                     <li><a href="#" id="home-nav" class="active">Beranda</a></li>
                     <li><a href="#" id="translator-nav">Translator</a></li>
                     <li><a href="#" id="games-nav">Games</a></li>
+                    <li><a href="#" id="edukasi-nav">Edukasi</a></li>
                     <li><a href="#" id="community-nav">Komunitas</a></li>
                     <li><a href="#" id="about-nav">Tentang</a></li>
                 </ul>
@@ -1330,6 +1331,20 @@
         </div>
     </div>
 
+    <div id="edukasi-page" class="page-container">
+  <div class="container">
+    <h2 class="section-title">Abjad <span>BISINDO</span></h2>
+    <p style="text-align: center; margin-bottom: 20px;">Panduan gerakan alfabet dalam Bahasa Isyarat Indonesia.</p>
+    <div style="text-align: center; margin-bottom: 20px;">
+<img src="abjad-bisindo.png" alt="Abjad BISINDO" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    </div>
+<p style="text-align: center; font-size: 0.9rem;">
+  Abjad dalam BISINDO (Sumber: Yayasan Peduli Kasih ABK)
+</p>
+  </div>
+</div>
+
+    
     <div id="translator-page" class="page-container">
         <div class="container">
             <h2 class="section-title">Penerjemah <span>BISINDO</span></h2>
@@ -1625,6 +1640,7 @@
                 home: document.getElementById('home-page'),
                 translator: document.getElementById('translator-page'),
                 games: document.getElementById('games-page'),
+                  edukasi: document.getElementById('edukasi-page'),
                 community: document.getElementById('community-page'),
                 about: document.getElementById('about-page'),
                 quiz: document.getElementById('quiz-page')
@@ -1634,6 +1650,7 @@
                 home: document.getElementById('home-nav'),
                 translator: document.getElementById('translator-nav'),
                 games: document.getElementById('games-nav'),
+                edukasi: document.getElementById('edukasi-nav'),
                 community: document.getElementById('community-nav'),
                 about: document.getElementById('about-nav')
             };
@@ -1681,6 +1698,12 @@
                 showPage('games');
             });
             
+            navLinks.edukasi.addEventListener('click', (e) => {
+            e.preventDefault();
+            showPage('edukasi');
+            });
+
+
             navLinks.community.addEventListener('click', (e) => {
                 e.preventDefault();
                 showPage('community');
